@@ -31,7 +31,7 @@ Para la codificación de la aplicación se han utilizado las siguientes versione
 
 ### Requisitos previos
 
-1. Clonar o descargar el código fuente del repositorio [batressc/AnalyticalWays.DataProcessor](https://github.com/batressc/AnalyticalWays.DataProcessor)
+1. Clonar o descargar el código fuente del repositorio [batressc/PruebaAALuisFernandez](https://github.com/batressc/PruebaAALuisFernandez)
 2. Poseer una instancia local o remota de Microsoft SQL Server, **versión 2014 en adelante**
 3. Opcional: Si se realizarán cambios en el modelo de datos, debe instalarse la extensión [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools)
 
@@ -41,7 +41,7 @@ La preparación de la base de datos puede realizarse de diferentes formas. A con
 
 ##### Restauración de la copia de respaldo
 
-En la carpeta raíz del proyecto, se encuentra el archivo de respaldo: [AnalyticalWaysTest.bak](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWaysTest.bak). Puede seguirse el proceso 
+En la carpeta raíz del proyecto, se encuentra el archivo de respaldo: [AnalyticalWaysTest.bak](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWaysTest.bak). Puede seguirse el proceso 
 de restauración de base de datos tradicional mediante Management Studio. Para más detalles ver [el siguiente enlace](https://docs.microsoft.com/en-us/sql/relational-databases/backup-restore/quickstart-backup-restore-database?view=sql-server-ver15#restore-a-backup)
 
 ##### Ejecución de script
@@ -71,12 +71,12 @@ GO
 ```
 
 Por defecto, el nombre de la base de datos generada es **"AnalyticalWaysTest".** Si se desea utilizar otro nombre para la base de datos es importante realizar la modificación correspondiente en la cadena de
-conexión en el archivo [appsettings.json](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/appsettings.json) de la aplicación.
+conexión en el archivo [appsettings.json](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/appsettings.json) de la aplicación.
 
 ### Cuenta de almacenamiento de Microsoft Azure
 
 Se ha habilitado temporalmente una cuenta de almacenamiento en mi cuenta personal de Microsoft Azure donde se encuentra el archivo **Stock.CSV** en el contenedor de blobs **csvfiles**. Si se desea
-modificar esta configuración deben modificarse los siguientes datos en el archivo [appsettings.json](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/appsettings.json):
+modificar esta configuración deben modificarse los siguientes datos en el archivo [appsettings.json](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/appsettings.json):
 
 ```json
 "CsvProcessorConfiguration": {
@@ -137,30 +137,30 @@ El siguiente cuadro describe de forma general cada uno de los archivos de la apl
 
 | Directorio | Archivo | Descripción |
 | ---------- | ------- | ----------- |
-| [Configuration](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Configuration) | N/A | Directorio donde se almacenan las clases utilizadas para el mapeo del las configuraciones de appsettings.json |
-| [Configuration](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Configuration) | [BlobStorageConfiguration.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Configuration/BlobStorageConfiguration.cs) | Parámetros de configuración relacionados con la cuenta de almacenamiento en Microsoft Azure |
-| [Configuration](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Configuration) | [CsvProcessorConfiguration.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Configuration/CsvProcessorConfiguration.cs) | Configuración general de aplicación |
-| [Configuration](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Configuration) | [SQLProcessingConfiguration.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Configuration/SQLProcessingConfiguration.cs) | Párametros de configuración relacionados con las operaciones de base de datos |
-| [Configuration](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Configuration) | [TrackingConfiguration.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Configuration/TrackingConfiguration.cs) | Parámetros de configuración relacionados con la generación del archivo de seguimiento de registros erróneos |
-| [Contracts](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Contracts) | N/A | Directorio donde se almacenan las interfaces de las operaciones de lectura de archivos y procesamiento de datos en SQL  |
-| [Contracts](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Contracts) | [IDataOperations.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Contracts/IDataOperations.cs) | Interfaz con la definición de las operaciones a realizar sobre el repositorio de datos |
-| [Contracts](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Contracts) | [IStorageOperations.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Contracts/IStorageOperations.cs) | Interfaz con la definición de las operaciones a realizar sobre el espacio de almacenamiento de archivos |
-| [Extensions](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Extensions) | N/A | Directorio donde se almacenan los métodos de extensión de la aplicación |
-| [Extensions](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Extensions) | [IHostBuilderExtensions.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Extensions/IHostBuilderExtensions.cs) | Posee métodos utilitarios para facilitar el mapeo de los servicios de la aplicación |
-| [Implementations](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Implementations) | N/A | Implementaciones particulares de las operaciones de acceso a la cuenta de almacenamiento y acceso a SQL Server |
-| [Implementations](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Implementations) | [ADODataOperations.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Implementations/ADODataOperations.cs) | Implementación de operaciones de acceso a base de datos utilizando ADO.NET |
-| [Implementations](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Implementations) | [AzureBlobStorageOperations.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Implementations/AzureBlobStorageOperations.cs) | Implementación de operaciones de acceso a la cuenta de almacenamiento de Microsoft Azure |
-| [Implementations](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Implementations) | [EntityFrameworkDataOperations.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Implementations/EntityFrameworkDataOperations.cs) | Implementación de operaciones de acceso a base de datos utilizando Entity Framework y EF Bulk Extensions |
-| [Model](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Model) | N/A  | Directorio donde se almacena el modelo de datos de la aplicación |
-| [Model](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Model) | [AnalyticalWaysTestDbContext.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Model/AnalyticalWaysTestDbContext.cs) | DbContext de la aplicación autogenerado utilizando la extensión de EF Core Power Tools |
-| [Model](https://github.com/batressc/AnalyticalWays.DataProcessor/tree/master/AnalyticalWays.DataProcessor/Model) | [StockInformation.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Model/StockInformation.cs) | Entidad autogenerada utilizando la extensión de EF Core Power Tools |
-| N/A | [Consumer.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Consumer.cs) | Consumidor: Lee la inforamción pre-procesada por el proceso productor y escribe los datos en SQL Server |
-| N/A | [CsvProcessor.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/CsvProcessor.cs) | **Clase principal encargada del ejecutar el proceso de lectura y almacenamiento de datos en SQL Server** |
-| N/A | [Producer.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Producer.cs) | Productor: Obtiene la información del archivo CSV ubicado en la cuenta de almacenamiento de Microsoft Azure y lo prepara para ser procesado por los procesos consumidores |
-| N/A | [Program.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Program.cs) | Punto de inicio de la aplicación como host |
-| N/A | [Startup.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Startup.cs) | Clase que almacena la configuración de las inyecciones de dependencias y servicios de la aplicación |
-| N/A | [appsettings.json](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/appsettings.json) | Archivo de configuración de la aplicación |
-| N/A | [efpt.config.json](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/efpt.config.json) | Archivo autogenerado que posee la configuración de conexión utilizando la extensión de EF Core Power Tools |
+| [Configuration](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Configuration) | N/A | Directorio donde se almacenan las clases utilizadas para el mapeo del las configuraciones de appsettings.json |
+| [Configuration](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Configuration) | [BlobStorageConfiguration.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Configuration/BlobStorageConfiguration.cs) | Parámetros de configuración relacionados con la cuenta de almacenamiento en Microsoft Azure |
+| [Configuration](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Configuration) | [CsvProcessorConfiguration.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Configuration/CsvProcessorConfiguration.cs) | Configuración general de aplicación |
+| [Configuration](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Configuration) | [SQLProcessingConfiguration.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Configuration/SQLProcessingConfiguration.cs) | Párametros de configuración relacionados con las operaciones de base de datos |
+| [Configuration](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Configuration) | [TrackingConfiguration.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Configuration/TrackingConfiguration.cs) | Parámetros de configuración relacionados con la generación del archivo de seguimiento de registros erróneos |
+| [Contracts](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Contracts) | N/A | Directorio donde se almacenan las interfaces de las operaciones de lectura de archivos y procesamiento de datos en SQL  |
+| [Contracts](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Contracts) | [IDataOperations.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Contracts/IDataOperations.cs) | Interfaz con la definición de las operaciones a realizar sobre el repositorio de datos |
+| [Contracts](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Contracts) | [IStorageOperations.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Contracts/IStorageOperations.cs) | Interfaz con la definición de las operaciones a realizar sobre el espacio de almacenamiento de archivos |
+| [Extensions](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Extensions) | N/A | Directorio donde se almacenan los métodos de extensión de la aplicación |
+| [Extensions](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Extensions) | [IHostBuilderExtensions.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Extensions/IHostBuilderExtensions.cs) | Posee métodos utilitarios para facilitar el mapeo de los servicios de la aplicación |
+| [Implementations](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Implementations) | N/A | Implementaciones particulares de las operaciones de acceso a la cuenta de almacenamiento y acceso a SQL Server |
+| [Implementations](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Implementations) | [ADODataOperations.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Implementations/ADODataOperations.cs) | Implementación de operaciones de acceso a base de datos utilizando ADO.NET |
+| [Implementations](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Implementations) | [AzureBlobStorageOperations.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Implementations/AzureBlobStorageOperations.cs) | Implementación de operaciones de acceso a la cuenta de almacenamiento de Microsoft Azure |
+| [Implementations](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Implementations) | [EntityFrameworkDataOperations.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Implementations/EntityFrameworkDataOperations.cs) | Implementación de operaciones de acceso a base de datos utilizando Entity Framework y EF Bulk Extensions |
+| [Model](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Model) | N/A  | Directorio donde se almacena el modelo de datos de la aplicación |
+| [Model](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Model) | [AnalyticalWaysTestDbContext.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Model/AnalyticalWaysTestDbContext.cs) | DbContext de la aplicación autogenerado utilizando la extensión de EF Core Power Tools |
+| [Model](https://github.com/batressc/PruebaAALuisFernandez/tree/master/AnalyticalWays.DataProcessor/Model) | [StockInformation.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Model/StockInformation.cs) | Entidad autogenerada utilizando la extensión de EF Core Power Tools |
+| N/A | [Consumer.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Consumer.cs) | Consumidor: Lee la inforamción pre-procesada por el proceso productor y escribe los datos en SQL Server |
+| N/A | [CsvProcessor.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/CsvProcessor.cs) | **Clase principal encargada del ejecutar el proceso de lectura y almacenamiento de datos en SQL Server** |
+| N/A | [Producer.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Producer.cs) | Productor: Obtiene la información del archivo CSV ubicado en la cuenta de almacenamiento de Microsoft Azure y lo prepara para ser procesado por los procesos consumidores |
+| N/A | [Program.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Program.cs) | Punto de inicio de la aplicación como host |
+| N/A | [Startup.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Startup.cs) | Clase que almacena la configuración de las inyecciones de dependencias y servicios de la aplicación |
+| N/A | [appsettings.json](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/appsettings.json) | Archivo de configuración de la aplicación |
+| N/A | [efpt.config.json](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/efpt.config.json) | Archivo autogenerado que posee la configuración de conexión utilizando la extensión de EF Core Power Tools |
 
 
 
@@ -183,7 +183,7 @@ y consumidores. En el siguiente [enlace](https://devblogs.microsoft.com/dotnet/a
 En la aplicación la implementación del Channel se ha realizado de la siguiente forma:
 
 ##### Proceso principal
-En el siguiente fragmento de código del archivo [CsvProcessor.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/CsvProcessor.cs), el cual es el proceso principal de la aplicación, se crea la instancia del Channel utilizado para la sincronización de lectura del archivo CSV 
+En el siguiente fragmento de código del archivo [CsvProcessor.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/CsvProcessor.cs), el cual es el proceso principal de la aplicación, se crea la instancia del Channel utilizado para la sincronización de lectura del archivo CSV 
 (productor) y escritura de datos en SQL Server (consumidores). 
 
 ```csharp
@@ -211,7 +211,7 @@ if (await _storage.FileExists(_conf.BlobStorageConfiguration.FileName, stoppingT
 }
 ```
 
-Dado que la información que se va a compartir son objetos del tipo [StockInformation](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Model/StockInformation.cs) la inicialización del objeto Channel se realiza de la 
+Dado que la información que se va a compartir son objetos del tipo [StockInformation](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Model/StockInformation.cs) la inicialización del objeto Channel se realiza de la 
 siguiente forma:
 
 ```csharp
@@ -242,7 +242,7 @@ for (int i = 1; i <= tareas; i++) {
 
 ##### Productor
 
-La clase [Producer.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Producer.cs) posee él método `PrepararDatos` el cual realiza las tareas del productor, éste recibe como parámetro la instancia del objeto `Channel<StockInformation>` utilizado para la sincronización
+La clase [Producer.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Producer.cs) posee él método `PrepararDatos` el cual realiza las tareas del productor, éste recibe como parámetro la instancia del objeto `Channel<StockInformation>` utilizado para la sincronización
 de datos.
 
 ```csharp
@@ -281,7 +281,7 @@ channel.Writer.Complete();
 
 ##### Consumidor
 
-La clase [Consumer.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Consumer.cs) posee él método `GuardarDatos` el cual realiza las tareas del consumidor, éste recibe como parámetro la instancia del objeto `Channel<StockInformation>` utilizado para la sincronización
+La clase [Consumer.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Consumer.cs) posee él método `GuardarDatos` el cual realiza las tareas del consumidor, éste recibe como parámetro la instancia del objeto `Channel<StockInformation>` utilizado para la sincronización
 de datos.
 
 ```csharp
@@ -309,7 +309,7 @@ while (await channel.Reader.WaitToReadAsync(cancellationToken)) {
 Por defecto, la aplicación utiliza la implementación de operaciones de base de datos **con ADO.NET** debido a que <u>es la tecnología más eficiente para el almacenamiento de datos.</u> Como parte de las actividades de investigación realizadas también se implementó una versión de operaciones utilizando **Entity Framework Core** pero 
 adicionándole los métodos de extensión de _bulk insert_ del paquete [EFCore.BulkExtensions](https://github.com/borisdj/EFCore.BulkExtensions). Esta combinación de librerías se convirtió **la segunda implementación más eficiente** para almacenar la información.
 
-Para utilizar esta implementación solamente debe cambiarse el código del método **ConfigureServices** del archivo [Startup.cs](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/Startup.cs) de la siguiente forma:
+Para utilizar esta implementación solamente debe cambiarse el código del método **ConfigureServices** del archivo [Startup.cs](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/Startup.cs) de la siguiente forma:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services) {
@@ -337,7 +337,7 @@ public void ConfigureServices(IServiceCollection services) {
 ### Visualización de ejecución de aplicación
 
 Se utiliza la implementación estandar del servicio `ILogger<T>` para la visualización de los diversos mensajes de seguimiento en la aplicación. Dependiendo del nivel de seguimiento 
-configurado en el archivo [appsettings.json](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/appsettings.json) así serán visibles los 
+configurado en el archivo [appsettings.json](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/appsettings.json) así serán visibles los 
 mensajes en la consola de la aplicación.
 
 Se recomienda utilizar las siguientes configuraciones:
@@ -345,7 +345,7 @@ Se recomienda utilizar las siguientes configuraciones:
 ##### Visualización resumida
 
 Mediante esta configuración solamente serán visibles los mensajes iniciales de inicio de la aplicación y los tiempos finales del procesamiento. Para ello, en el archivo 
-[appsettings.json](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/appsettings.json) debe configurarse la sección **Logging** de la 
+[appsettings.json](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/appsettings.json) debe configurarse la sección **Logging** de la 
 siguiente forma:
 
 ```json
@@ -363,7 +363,7 @@ En la siguiente imagen se puede visualizar la forma de presentación de mensajes
 ##### Visualización detallada
 
 Mediante esta configuración se muestran todos los mensajes seguimiento del proceso de carga de información a SQL Server. Para ello, en el archivo 
-[appsettings.json](https://github.com/batressc/AnalyticalWays.DataProcessor/blob/master/AnalyticalWays.DataProcessor/appsettings.json) debe configurarse la sección **Logging** de la 
+[appsettings.json](https://github.com/batressc/PruebaAALuisFernandez/blob/master/AnalyticalWays.DataProcessor/appsettings.json) debe configurarse la sección **Logging** de la 
 siguiente forma:
 
 ```json
