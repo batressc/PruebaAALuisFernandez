@@ -121,6 +121,7 @@ namespace AnalyticalWays.DataProcessor {
                         // Agregando registro erroneo para log de seguimiento de errores
                         registrosErroneos.Add((linea, registro, mensaje));
                     }
+                    if (cancellationToken.IsCancellationRequested) break;
                 }
                 // Indicamos al Channel que ya no vamos a enviar más datos
                 channel.Writer.Complete();

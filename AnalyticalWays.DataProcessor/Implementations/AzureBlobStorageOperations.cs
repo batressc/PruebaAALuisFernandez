@@ -2,9 +2,7 @@
 using AnalyticalWays.DataProcessor.Contracts;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -50,7 +48,6 @@ namespace AnalyticalWays.DataProcessor.Implementations {
                 BufferSize = _conf.BlobStorageConfiguration.DownloadBufferSizeMB * 1024 * 1024
             };
             Stream stream = await bc.OpenReadAsync(options, cancellationToken);
-            //readAction.Invoke(stream);
             return stream;
         }
     }

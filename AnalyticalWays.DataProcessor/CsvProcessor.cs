@@ -22,8 +22,8 @@ namespace AnalyticalWays.DataProcessor {
         private readonly IStorageOperations _storage;
         private readonly ILogger<CsvProcessor> _logger;
         private readonly IDataOperations<StockInformation> _data;
-        private readonly Producer _consumer;
-        private readonly Consumer _producer;
+        private readonly Producer _producer;
+        private readonly Consumer _consumer;
 
         /// <summary>
         /// Crea una instancia de la clase <see cref="CsvProcessor"/>
@@ -35,8 +35,8 @@ namespace AnalyticalWays.DataProcessor {
         /// <param name="data">Servicio de acceso a datos (SQL)</param>
         /// <param name="logger">Servicio de logging</param>
         public CsvProcessor(Producer consumer, Consumer producer, IOptions<CsvProcessorConfiguration> conf, IStorageOperations storage, IDataOperations<StockInformation> data, ILogger<CsvProcessor> logger) {
-            _consumer = consumer;
-            _producer = producer;
+            _producer = consumer;
+            _consumer = producer;
             _conf = conf.Value;
             _storage = storage;
             _data = data;
@@ -96,11 +96,11 @@ namespace AnalyticalWays.DataProcessor {
                     CancellationToken ctoken = cts.Token;
                     // Creando procesos
                     List<Task<TimeSpan>> procesos = new List<Task<TimeSpan>> {
-                        Task.Run(() => _consumer.PrepararDatos(_conf.BlobStorageConfiguration.FileName, canal, ctoken, cts))
+                        Task.Run(() => _producer.PrepararDatos(_conf.BlobStorageConfiguration.FileName, canal, ctoken, cts))
                     };
                     for (int i = 1; i <= tareas; i++) {
                         int proceso = i;
-                        procesos.Add(Task.Run(() => _producer.GuardarDatos(proceso, canal, ctoken, cts)));
+                        procesos.Add(Task.Run(() => _consumer.GuardarDatos(proceso, canal, ctoken, cts)));
                     }
                     // Ejecutando procesos
                     TimeSpan[] procesamiento = await Task.WhenAll(procesos);

@@ -27,8 +27,9 @@ namespace AnalyticalWays.DataProcessor.Implementations {
         /// Convierte una lista de elementos a DataTable
         /// </summary>
         /// <param name="datos">Lista de información de stock</param>
+        /// <param name="cancellationToken">Token de cancelación</param>
         /// <returns>DataTable con la información de Stock</returns>
-        private DataTable ToDataTable(List<StockInformation> datos) {
+        private DataTable ToDataTable(List<StockInformation> datos, CancellationToken cancellationToken) {
             DataTable table = new DataTable("StockInformation");
             table.Columns.Add("pos", typeof(string));
             table.Columns.Add("product", typeof(string));
@@ -41,6 +42,7 @@ namespace AnalyticalWays.DataProcessor.Implementations {
                 row["date"] = item.StockDate;
                 row["stock"] = item.Stock;
                 table.Rows.Add(row);
+                if (cancellationToken.IsCancellationRequested) break;
             }
             return table;
         }
@@ -74,7 +76,7 @@ namespace AnalyticalWays.DataProcessor.Implementations {
             using SqlBulkCopy bulk = new SqlBulkCopy(conn) {
                 DestinationTableName = "StockInformation",                
             };
-            DataTable datosTable = ToDataTable((List<StockInformation>)datos);
+            DataTable datosTable = ToDataTable((List<StockInformation>)datos, cancellationToken);
             await conn.OpenAsync(cancellationToken);
             await bulk.WriteToServerAsync(datosTable, cancellationToken);
             return bulk.RowsCopied > 0;

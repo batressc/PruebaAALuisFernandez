@@ -90,6 +90,7 @@ namespace AnalyticalWays.DataProcessor {
                     tiempoGuardado += await AgregarDatos(cronometro, batchStock, tiempoGuardado, proceso, totalElementos, cancellationToken, cts);
                     elementosBatch = 0;
                 }
+                if (cancellationToken.IsCancellationRequested) break;
             }
             // Agregando datos remanentes 
             if (batchStock.Count != 0) {
